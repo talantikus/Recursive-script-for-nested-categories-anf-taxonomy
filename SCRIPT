@@ -1,0 +1,11 @@
+$parent = 0;
+
+function getAllCategory($parent)
+{
+	$cats = Yii::$app->db->createCommand('SELECT * FROM category WHERE pid = '.$parent)->queryAll();
+	foreach ($cats as $cat){
+		echo $cat-name;									
+		$parent = $cat-id;
+		getAllCategory($parent);
+	}
+}		
